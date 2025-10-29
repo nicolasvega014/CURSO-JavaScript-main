@@ -7,7 +7,7 @@ const productos = [
   { nombre: "zapatillas", precio: 25000 },
   { nombre: "gorra", precio: 4000 }
 ];
- const carrito = [];
+  const carrito = [];
 
 let eleccion = prompt("Ingresa el producto que queres comprar o 'salir' para terminar");
 
@@ -29,17 +29,16 @@ while (eleccion !== "salir") {
     eleccion = prompt("Ingresa el producto que queres comprar o 'salir' para terminar");
 }
 function calcularTotal (carrito) {
-   let total = 0;
-
-     for (let producto of carrito) {
-       total+= producto.precio;
+  let total = 0;
+    for (let producto of carrito) {
+      total+= producto.precio;
         };
 
       if(total >=20000){
       total*=0.9;}; //Aplica un descuento del 10%
 
       return (total);
- }
+  }
 
 
 let totalAPagar = calcularTotal(carrito);

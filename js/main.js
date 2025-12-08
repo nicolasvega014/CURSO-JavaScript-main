@@ -35,38 +35,65 @@ function mostrarProductos(productos) {
 mostrarProductos(productos);
 
 function agregarAlCarrito(producto) {
-    carrito.push(producto);
+    // Buscar si el producto ya está en el carrito
+    const existente = carrito.find(item => item.id === producto.id);
+    if (existente) {
+        // Si existe, sumamos la cantidad
+        existente.cantidad = (existente.cantidad || 1) + 1;
+    } else {
+        // Si no existe, lo agregamos con cantidad 1
+        carrito.push({ ...producto, cantidad: 1 });
+    }
     guardarCarrito();
     mostrarCarrito();
+}
+
+function mostrarCarrito(productos) {
+    const lista = document.getElementById("carrito-lista");
+    const totalTexto = document.getElementById("carrito-total");
+    lista.innerHTML = "";
+    let total = 0;
+    for (const item of carrito) {
+        const subtotal = item.precio * item.cantidad;
+        const linea = document.createElement("div");
+        linea.classList.add("carrito-item");
+        linea.innerHTML = `
+            <span>${item.nombre} x${item.cantidad} — $${subtotal}</span>
+            <button class="eliminar-btn" data-id="${item.id}">X</button>
+        `;
+        lista.appendChild(linea);
+        total += subtotal;
+    }
+    const botonesEliminar = document.querySelectorAll(".eliminar-btn");
+    botonesEliminar.forEach(boton => {
+        boton.addEventListener("click", function () {
+            const id = parseInt(this.dataset.id);
+            eliminarDelCarrito(id);
+        });
+    });
+    if (total >= 20000) {
+        total *= 0.9;
+    }
+    totalTexto.innerText = `Total: $${total}`;
+}
+function eliminarDelCarrito(id) {
+    const item = carrito.find(producto => producto.id === id);
+    if (item) {
+        if (item.cantidad > 1) {
+            item.cantidad--;
+        } else {
+            const index = carrito.findIndex(producto => producto.id === id);
+            carrito.splice(index, 1);
+        }
+        guardarCarrito();
+        mostrarCarrito();
+    }
 }
 
 function guardarCarrito() {
     localStorage.setItem("carrito", JSON.stringify(carrito));
 }
 
-
-function mostrarCarrito() {
-    const lista = document.getElementById("carrito-lista");
-    const totalTexto = document.getElementById("carrito-total");
-
-    lista.innerHTML = "";
-
-    let total = 0;
-
-    for (const item of carrito) {
-        const linea = document.createElement("p");
-        linea.innerText = `${item.nombre} - $${item.precio}`;
-        lista.appendChild(linea);
-        total += item.precio;
-    }
-
-
-    if (total >= 20000) {
-        total *= 0.9;
-    }
-
-    totalTexto.innerText = `Total: $${total}`;
-}
 
 
 const btnVaciar = document.getElementById("vaciar-carrito");

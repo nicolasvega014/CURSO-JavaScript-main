@@ -14,6 +14,22 @@
     </header>
 
     <main>
+
+        <input 
+    type="text" 
+    id="buscador" 
+    placeholder="Buscar un producto..." 
+    autocomplete="off"
+        >
+
+        <select id="ordenar">
+            <option value="default">Ordenar por...</option>
+            <option value="precio-asc">Precio: menor a mayor</option>
+            <option value="precio-desc">Precio: mayor a menor</option>
+            <option value="nombre-asc">Nombre A-Z</option>
+            <option value="nombre-desc">Nombre Z-A</option>
+        </select>
+
         <section id="productos-container"></section>
 
         <aside id="carrito">

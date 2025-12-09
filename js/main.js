@@ -10,6 +10,11 @@ const productos = [
 
 const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
+// Normalizar estructura del carrito cargado (asegurar propiedad cantidad)
+for (const item of carrito) {
+    if (typeof item.cantidad !== 'number') item.cantidad = 1;
+}
+
 
 function mostrarProductos(productos) {
     const contenedor = document.getElementById("productos-container");
@@ -28,20 +33,64 @@ function mostrarProductos(productos) {
 
 
         const boton = document.getElementById(`btn${producto.id}`);
-        boton.addEventListener("click", () => agregarAlCarrito(producto));
+        if (boton) boton.addEventListener("click", () => agregarAlCarrito(producto));
     }
 }
 
 mostrarProductos(productos);
 
+const buscador = document.getElementById("buscador");
+
+const ordenar = document.getElementById("ordenar");
+
+if (ordenar) {
+    ordenar.addEventListener("change", function () {
+    let productosOrdenados = [...productos];
+
+    switch (this.value) {
+        case "precio-asc":
+            productosOrdenados.sort((a, b) => a.precio - b.precio);
+            break;
+
+        case "precio-desc":
+            productosOrdenados.sort((a, b) => b.precio - a.precio);
+            break;
+
+        case "nombre-asc":
+            productosOrdenados.sort((a, b) => a.nombre.localeCompare(b.nombre));
+            break;
+
+        case "nombre-desc":
+            productosOrdenados.sort((a, b) => b.nombre.localeCompare(a.nombre));
+            break;
+
+        default:
+            productosOrdenados = [...productos];
+    }
+
+    document.getElementById("productos-container").innerHTML = "";
+    mostrarProductos(productosOrdenados);
+    });
+}
+
+if (buscador) {
+    buscador.addEventListener("input", function () {
+    const texto = this.value.toLowerCase();
+
+    const filtrados = productos.filter(prod =>
+        prod.nombre.toLowerCase().includes(texto)
+    );
+
+    document.getElementById("productos-container").innerHTML = "";
+    mostrarProductos(filtrados);
+    });
+}
+
 function agregarAlCarrito(producto) {
-    // Buscar si el producto ya está en el carrito
     const existente = carrito.find(item => item.id === producto.id);
     if (existente) {
-        // Si existe, sumamos la cantidad
         existente.cantidad = (existente.cantidad || 1) + 1;
     } else {
-        // Si no existe, lo agregamos con cantidad 1
         carrito.push({ ...producto, cantidad: 1 });
     }
     guardarCarrito();
@@ -97,11 +146,13 @@ function guardarCarrito() {
 
 
 const btnVaciar = document.getElementById("vaciar-carrito");
-btnVaciar.addEventListener("click", function () {
+if (btnVaciar) {
+    btnVaciar.addEventListener("click", function () {
     carrito.length = 0; 
     guardarCarrito();
     mostrarCarrito();
-});
+    });
+}
 
 
 if (carrito.length > 0) {

@@ -42,24 +42,24 @@ Proyecto final del curso de JavaScript.
 ----------
 
 
- 📁 Estructura del proyecto
-  │── index.html
-  │── README.md
-  │
-  ├── 📁 css
-  │   └── style.css
-  │
-  ├── 📁 js
-  │   ├── main.js
-  │   ├── compra.js
-  │   └── historial.js
-  │
-  ├── 📁 data
-  │   └── productos.json
-  │
-  └── 📁 pages
-      ├── compra.html
-      └── historial.html
+## 📁 Estructura del proyecto
+   │── index.html
+   │── README.md
+   │
+   ├── 📁 css
+   │   └── style.css
+   │
+   ├── 📁 js
+   │   ├── main.js
+   │   ├── compra.js
+   │   └── historial.js
+   │
+   ├── 📁 data
+   │   └── productos.json
+   │
+   └── 📁 pages
+       ├── compra.html
+       └── historial.html
 
 
 

@@ -264,6 +264,7 @@ main {
 
 .btn-volver:hover {
     background: #c92a2a;
+
 }
 
 
@@ -287,4 +288,40 @@ main {
 
 #finalizar-compra:active {
     transform: scale(0.98);
+}
+
+#ver-historial {
+    margin-top: 15px;
+    background: #20c997;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    width: 100%;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.2s;
+}
+
+#ver-historial:hover {
+    background: #0ca678;
+}
+
+.btn-volver-historial {
+    display: block;
+    margin: 30px auto;
+    width: 200px;
+    background: #fa5252;
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    text-align: center;
+    transition: background 0.2s;
+}
+
+.btn-volver-historial:hover {
+    background: #c92a2a;
 }

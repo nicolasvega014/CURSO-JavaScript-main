@@ -1,4 +1,3 @@
-
 const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
 
@@ -13,7 +12,6 @@ if (carrito.length === 0) {
     });
 }
 
-
 const form = document.getElementById("form-compra");
 
 form.addEventListener("submit", (e) => {
@@ -24,7 +22,25 @@ form.addEventListener("submit", (e) => {
         title: "¡Compra realizada!",
         text: "Gracias por tu compra. Te enviamos un correo con los detalles.",
         confirmButtonText: "Aceptar"
-    }).then(() => {
+    })
+    .then(() => {
+
+
+        let historial = JSON.parse(localStorage.getItem("historialCompras")) || [];
+
+
+        const carritoCopia = carrito.map(item => ({ ...item }));
+
+
+        historial.push({
+            productos: carritoCopia,
+            fecha: new Date().toLocaleString(),
+            total: carritoCopia.reduce((sum, item) => sum + item.precio * item.cantidad, 0)
+        });
+
+
+        localStorage.setItem("historialCompras", JSON.stringify(historial));
+
 
         localStorage.removeItem("carrito");
 

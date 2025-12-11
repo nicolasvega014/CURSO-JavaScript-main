@@ -217,3 +217,11 @@ if (btnFinalizar) {
         window.location.href = "./pages/compra.html";
     });
 }
+
+const verHistorial = document.getElementById("ver-historial");
+
+if (verHistorial) {
+    verHistorial.addEventListener("click", () => {
+        window.location.href = "./pages/historial.html";
+    });
+}

@@ -222,3 +222,12 @@ if (btnVaciar) {
 if (carrito.length > 0) {
     mostrarCarrito();
 }
+
+
+const btnFinalizar = document.getElementById("finalizar-compra");
+
+if (btnFinalizar) {
+    btnFinalizar.addEventListener("click", () => {
+        window.location.href = "./pages/compra.html";
+    });
+}

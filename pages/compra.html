@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalizar Compra</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../js/compra.js"></script>
+</head>
+
+<body>
+
+    <header>
+        <h1>Finalizar Compra</h1>
+    </header>
+
+    <main class="checkout-container">
+
+        <section class="checkout-box">
+            <h2>Datos del comprador</h2>
+
+            <form id="form-compra">
+
+                <label>Nombre y apellido</label>
+                <input type="text" value="Juan Pérez" required>
+
+                <label>Email</label>
+                <input type="email" value="juanperez@example.com" required>
+
+                <label>Método de pago</label>
+                <select>
+                    <option>Tarjeta de crédito</option>
+                    <option>Tarjeta de débito</option>
+                    <option>Mercado Pago</option>
+                </select>
+
+                <button type="submit" class="btn-comprar">Confirmar compra</button>
+            </form>
+
+            <button class="btn-volver" onclick="window.location.href='../index.html'">
+                Volver a la tienda
+            </button>
+
+        </section>
+
+    </main>
+
+
+</body>
+</html>

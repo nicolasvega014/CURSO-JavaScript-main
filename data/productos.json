@@ -1,0 +1,11 @@
+
+[
+    { "id": 1, "nombre": "remera", "precio": 5000 },
+    { "id": 2, "nombre": "pantalon", "precio": 8000 },
+    { "id": 3, "nombre": "campera", "precio": 15000 },
+    { "id": 4, "nombre": "zapatillas", "precio": 25000 },
+    { "id": 5, "nombre": "gorra", "precio": 4000 },
+    { "id": 6, "nombre": "short", "precio": 7600 },
+    { "id": 7, "nombre": "bufanda", "precio": 3200 }
+]
+

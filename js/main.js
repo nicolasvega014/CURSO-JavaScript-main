@@ -1,8 +1,5 @@
 let productos = [];
 
-// ===============================
-// CARGA DE PRODUCTOS DESDE JSON
-// ===============================
 fetch("./data/productos.json")
     .then(response => {
         if (!response.ok) throw new Error("Error al cargar productos");
@@ -15,7 +12,6 @@ fetch("./data/productos.json")
     .catch(error => {
         console.error(error);
 
-        // ❗ Reemplazo del alert() por SweetAlert2
         Swal.fire({
             icon: "error",
             title: "Error",
@@ -23,17 +19,13 @@ fetch("./data/productos.json")
         });
     });
 
-// ===============================
-// CARRITO INICIAL
-// ===============================
+
 const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 for (const item of carrito) {
     if (typeof item.cantidad !== 'number') item.cantidad = 1;
 }
 
-// ===============================
-// MOSTRAR PRODUCTOS
-// ===============================
+
 function mostrarProductos(productos) {
     const contenedor = document.getElementById("productos-container");
 
@@ -54,9 +46,6 @@ function mostrarProductos(productos) {
     }
 }
 
-// ===============================
-// BUSCADOR Y ORDENADOR
-// ===============================
 const buscador = document.getElementById("buscador");
 const ordenar = document.getElementById("ordenar");
 
@@ -99,9 +88,6 @@ if (buscador) {
     });
 }
 
-// ===============================
-// AGREGAR AL CARRITO
-// ===============================
 function agregarAlCarrito(producto) {
     const existente = carrito.find(item => item.id === producto.id);
 

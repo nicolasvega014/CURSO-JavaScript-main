@@ -1,32 +1,49 @@
+function cargarHistorial() {
+    try {
+        const historial = JSON.parse(localStorage.getItem("historialCompras")) || [];
 
-const historialContainer = document.getElementById("historial-container");
+        const contenedor = document.getElementById("historial-container");
 
-let historial = JSON.parse(localStorage.getItem("historialCompras")) || [];
+        if (!contenedor) {
+            throw new Error("No se encontró el contenedor del historial");
+        }
 
-if (historial.length === 0) {
-    historialContainer.innerHTML = `
-        <p style="text-align:center; font-size:1.2rem;">
-            Todavía no realizaste ninguna compra.
-        </p>
-    `;
-} else {
+        if (historial.length === 0) {
+            contenedor.innerHTML = `
+                <p class="sin-historial">No tienes compras registradas.</p>
+            `;
+            return;
+        }
 
-    historial.forEach((compra, index) => {
-        const box = document.createElement("div");
-        box.classList.add("checkout-box");
+        historial.forEach((compra, index) => {
+            const div = document.createElement("div");
+            div.classList.add("compra-item");
 
-        let listaProductos = compra.productos
-            .map(item => `${item.nombre} x${item.cantidad}`)
-            .join("<br>");
+            div.innerHTML = `
+                <h3>Compra #${index + 1}</h3>
+                <p><strong>Fecha:</strong> ${compra.fecha}</p>
+                <p><strong>Total:</strong> $${compra.total}</p>
+                <p><strong>Productos:</strong></p>
+                <ul>
+                    ${compra.productos
+                        .map(p => `<li>${p.nombre} x${p.cantidad}</li>`)
+                        .join("")}
+                </ul>
+            `;
 
-        box.innerHTML = `
-            <h2>Compra #${index + 1}</h2>
-            <p><strong>Fecha:</strong> ${compra.fecha}</p>
-            <p><strong>Total:</strong> $${compra.total}</p>
-            <p><strong>Productos:</strong><br>${listaProductos}</p>
-        `;
+            contenedor.appendChild(div);
+        });
 
-        historialContainer.appendChild(box);
-    });
+    } catch (error) {
+        Swal.fire({
+            icon: "error",
+            title: "Error al cargar historial",
+            text: "Ocurrió un problema al mostrar tus compras.",
+            confirmButtonText: "Aceptar"
+        });
+    }
 }
+
+cargarHistorial();
+
 

@@ -1,23 +1,29 @@
 let productos = [];
 
-fetch("./data/productos.json")
-    .then(response => {
-        if (!response.ok) throw new Error("Error al cargar productos");
-        return response.json();
-    })
-    .then(data => {
+async function cargarProductos() {
+    try {
+        const response = await fetch("./data/productos.json");
+
+        if (!response.ok) {
+            throw new Error("No se pudieron cargar los productos");
+        }
+
+        const data = await response.json();
         productos = data;
         mostrarProductos(productos);
-    })
-    .catch(error => {
-        console.error(error);
 
+    } catch (error) {
         Swal.fire({
             icon: "error",
-            title: "Error",
-            text: "Hubo un problema al cargar los productos."
+            title: "Error al cargar productos",
+            text: "Hubo un problema al obtener los productos. Intenta más tarde.",
+            confirmButtonText: "Aceptar"
         });
-    });
+    }
+}
+
+cargarProductos();
+
 
 
 const carrito = JSON.parse(localStorage.getItem("carrito")) || [];

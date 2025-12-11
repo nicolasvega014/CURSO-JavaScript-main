@@ -57,9 +57,10 @@ Proyecto final del curso de JavaScript.
    ├── 📁 data
    │   └── productos.json
    │
-   └── 📁 pages
+   └── 📁 pages   
        ├── compra.html
        └── historial.html
+       
 
 
 

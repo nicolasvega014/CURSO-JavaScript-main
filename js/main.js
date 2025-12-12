@@ -39,7 +39,8 @@ function mostrarProductos(productos) {
         const card = document.createElement("div");
         card.classList.add("card");
 
-        card.innerHTML = `
+            card.innerHTML = `
+            <img src="${producto.imagen}" alt="${producto.nombre}" class="producto-img">
             <h3>${producto.nombre}</h3>
             <p>Precio: $${producto.precio}</p>
             <button id="btn${producto.id}">Agregar al carrito</button>
@@ -154,8 +155,6 @@ function mostrarCarrito() {
     totalTexto.innerText = `Total: $${total}`;
 }
 
-
-
 function eliminarDelCarrito(id) {
     const item = carrito.find(producto => producto.id === id);
 
@@ -171,8 +170,6 @@ function eliminarDelCarrito(id) {
         mostrarCarrito();
     }
 }
-
-
 
 function guardarCarrito() {
     localStorage.setItem("carrito", JSON.stringify(carrito));
@@ -210,11 +207,9 @@ if (btnVaciar) {
     });
 }
 
-
 if (carrito.length > 0) {
     mostrarCarrito();
 }
-
 
 const btnFinalizar = document.getElementById("finalizar-compra");
 

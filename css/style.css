@@ -385,3 +385,73 @@ main {
     height: 160px;
     object-fit: scale-down;
 }
+
+
+/* ===== Responsive: ajustes para pantallas pequeñas ===== */
+@media (max-width: 700px) {
+    main {
+        flex-direction: column;
+        align-items: center;
+        padding: 12px;
+    }
+
+    #productos-container {
+        width: 100%;
+        gap: 16px;
+        padding: 0 8px;
+    }
+
+    #carrito {
+        width: 100%;
+        margin-top: 18px;
+        position: static;
+    }
+
+    #buscador,
+    #ordenar {
+        width: 100%;
+    }
+
+    .card {
+        width: calc(50% - 16px);
+    }
+
+    .producto-img {
+        width: 100%;
+        height: auto;
+        max-height: 160px;
+    }
+
+    .checkout-box {
+        width: 100%;
+        padding: 18px;
+    }
+
+    #historial-container {
+        width: 95%;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 400px) {
+    .card {
+        width: 100%;
+    }
+
+    header h1 {
+        font-size: 1.6rem;
+    }
+
+    #carrito h2 {
+        font-size: 1.1rem;
+    }
+
+    #vaciar-carrito,
+    #finalizar-compra,
+    #ver-historial,
+    .btn-volver,
+    .btn-comprar {
+        padding: 10px;
+        font-size: 0.95rem;
+    }
+}

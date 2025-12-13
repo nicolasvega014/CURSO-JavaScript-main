@@ -49,6 +49,8 @@ Proyecto final del curso de JavaScript.
    
    │
    
+   ├── 📁 img
+   
    ├── 📁 css
    
    │   └── style.css
